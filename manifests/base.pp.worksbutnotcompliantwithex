@@ -1,0 +1,12 @@
+class profile::base {
+  file {'/tmp/hello_world':
+    ensure  => present,
+    content => 'we are the world',
+}
+  $ntp_servers = hiera_array('profile::base::ntp_servers')    
+  class { '::ntp':
+    servers => $ntp_servers,
+  }
+
+
+}
